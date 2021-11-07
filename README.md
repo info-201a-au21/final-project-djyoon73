@@ -4,6 +4,15 @@ By: Sai Raksha Rayala, Da Jeong Yoon, and Pranav Prabhakar
 ### Domain of Interest
 Our group is interested in the field and domain of COVID vaccination. We are interested in this, because its data is relevant to how our lives will proceed in these next few months and years, as public health and the end of the pandemic depends on the rate of vaccination. Our team is interested in seeing how other factors may influence the rate of vaccinations such as age, geographic location, political leanings, and more. We believe this domain is pertinent to our current and future lives!
 
+A data driven project we have found in the domain of the COVID pandemic and its spread relating to vaccinations is a research project observing the efficacy of COVID-19 vaccinations in israeli households. Funded by Sheba Medical Center, this study used previous coronavirus spread data, along with current testing and observational data, to discover whether the vaccine does in fact reduce the risk of contracting COVID-19. 
+[Impact of BNT162b2 vaccination on SARS-CoV-2 transmission in Israeli households](https://www.medrxiv.org/content/10.1101/2021.07.12.21260377v1)
+
+Another project we found in this space is a study by Serkan Balli, modeling the spread of the coronavirus with time-series prediction models using machine learning. Testing multiple models using previous COVID-19 data, he discovered that Support Vector Machines provided the best trend. 
+[Data analysis of Covid-19 pandemic and short-term cumulative case forecasting](https://www.sciencedirect.com/science/article/pii/S0960077920309048?via%3Dihub)
+
+The next data driven project is a model-informed study of COVID-19 vaccine prioritization. In this study, the authors use mathematical models to compare five different age prioritization strategies in order to determine the most effective way to distribute the vaccine. They also discuss the ethics of distributing the vaccine, as they discover how each distribution model can impact equity in the healthcare space. 
+[Model-informed COVID-19 vaccine prioritization strategies by age and serostatus](https://www.science.org/doi/full/10.1126/science.abe6959)
+
 We hope to answer inquiries such as the following questions:
 - Which age groups have been the most vaccinated against COVID-19?
 - Does the political leanings of geographic locations correlate with their rate of vaccinations?
