@@ -37,7 +37,8 @@ state_vaccines <- regional_vaccines %>%
   filter(location != "Northern Mariana Islands") %>%
   filter(location != "Republic of Palau") %>%
   filter(location != "Bureau of Prisons") %>%
-  filter(location != "Veterans Health") 
+  filter(location != "Veterans Health") %>%
+  filter(location != "Long Term Care") 
 View(state_vaccines)
 #Which state has the highest fully vaccinated rate?
 highest_state_fully_vaccinated <- state_vaccines %>%
