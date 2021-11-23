@@ -13,8 +13,7 @@ num_features_vaccines <- ncol(vaccines)
 #thousand people? This is to provide round numbers of for these values and change the "per
 #hundred" columns to per ten thousand.
 people_fully_vaccinated_per_tenthousand <- vaccines %>%
-  select(people_fully_vaccinated_per_hundred)
-  * 100
+  select(people_fully_vaccinated_per_hundred) * 100
 
 #Separate United States cumulative data into a different data frame from the states and territories?
 us_vaccines <- vaccines %>%
