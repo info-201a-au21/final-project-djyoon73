@@ -44,7 +44,7 @@ View(agg_table)
 
 
 #Create Scatterplot
-plot(agg_table$total_dist_per_100, agg_table$people_fullvax_per_100, main = "People Vaccinated per Vaccines Distributed", 
+vaccine_scatterplot <- plot(agg_table$total_dist_per_100, agg_table$people_fullvax_per_100, main = "People Vaccinated per Vaccines Distributed", 
      xlab = "Total Vaccines Distributed",
      ylab = "People Fully Vaccinated",
      sub = "All Values are per 100 People", col.sub = "red")

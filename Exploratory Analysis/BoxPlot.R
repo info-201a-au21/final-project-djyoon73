@@ -48,7 +48,7 @@ View(agg_table)
 
 
 #boxplot
-boxplot(agg_table$people_fullvax_per_100, main = "Boxplot of People Vaccinated per 100", 
+vaccine_boxplot <- boxplot(agg_table$people_fullvax_per_100, main = "Boxplot of People Vaccinated per 100", 
         ylab = "People Vaccinated per 100",
         sub = "All Values are per 100 People")
 

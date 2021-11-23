@@ -53,7 +53,7 @@ us_months_vaccines <- rbind(jan_vaccines, feb_vaccines, mar_vaccines, apr_vaccin
 arrange(us_months_vaccines, date)
 View(us_months_vaccines)                
 
-ggplot(us_months_vaccines) +
+vaccines_bar_chart <- ggplot(us_months_vaccines) +
   geom_col(mapping = aes(x = date, y = people_fully_vaccinated)) + coord_flip() +
 labs(
   title = "Fully Vaccinated People in US by Month", # plot title
