@@ -38,6 +38,6 @@ agg_table <- state_vaccines %>% group_by(location) %>%
             people_full_vax = sum(people_fully_vaccinated, na.rm = TRUE), 
             people_fullvax_per_100 = round(mean(people_fully_vaccinated_per_hundred, na.rm = TRUE)),
             daily_vax_average = round(mean(daily_vaccinations, na.rm = TRUE)),
-            daily_vax_per_million = mean(daily_vaccinations_per_million, na.rm = TRUE), 
-            share_of_doses_used = round(mean(share_doses_used, na.rm = TRUE) * 100))
+            daily_vax_per_million = round(mean(daily_vaccinations_per_million, na.rm = TRUE)), 
+            percentage_of_doses_used = round(mean(share_doses_used, na.rm = TRUE) * 100))
 View(agg_table)
