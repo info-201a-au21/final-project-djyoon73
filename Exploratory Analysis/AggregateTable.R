@@ -1,7 +1,6 @@
 library("dplyr")
 library("tidyverse")
 vaccines <- read.csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv")
-View(vaccines)
 
 
 #Separate United States cumulative data into a different data frame from the 
@@ -26,7 +25,6 @@ state_vaccines <- regional_vaccines %>%
   filter(location != "Bureau of Prisons") %>%
   filter(location != "Veterans Health") %>%
   filter(location != "Long Term Care") 
-View(state_vaccines)
 
 #Group Vaccines by State to form a readable table 
 agg_table <- state_vaccines %>% group_by(location) %>%
@@ -40,4 +38,3 @@ agg_table <- state_vaccines %>% group_by(location) %>%
             daily_vax_average = round(mean(daily_vaccinations, na.rm = TRUE)),
             daily_vax_per_million = round(mean(daily_vaccinations_per_million, na.rm = TRUE)), 
             percentage_of_doses_used = round(mean(share_doses_used, na.rm = TRUE) * 100))
-View(agg_table)

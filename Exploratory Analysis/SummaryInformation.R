@@ -1,8 +1,7 @@
 library("dplyr")
 library("tidyverse")
-library("knitr")
+
 vaccines <- read.csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv")
-View(vaccines)
 
 #How many observations are in the vaccines data set?
 obs_vaccines <- nrow(vaccines)
@@ -19,11 +18,9 @@ people_fully_vaccinated_per_tenthousand <- vaccines %>%
 #Separate United States cumulative data into a different data frame from the states and territories?
 us_vaccines <- vaccines %>%
   filter(location == "United States")
-View(us_vaccines)
 
 regional_vaccines <- vaccines %>%
   filter(location != "United States")
-View(regional_vaccines)
 
 state_vaccines <- regional_vaccines %>%
   filter(location != "American Samoa") %>%
@@ -39,7 +36,7 @@ state_vaccines <- regional_vaccines %>%
   filter(location != "Bureau of Prisons") %>%
   filter(location != "Veterans Health") %>%
   filter(location != "Long Term Care") 
-View(state_vaccines)
+
 #Which state has the highest fully vaccinated rate?
 highest_state_fully_vaccinated <- state_vaccines %>%
   filter(date == max(date)) %>%

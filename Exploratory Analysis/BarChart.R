@@ -1,8 +1,6 @@
 library("dplyr")
 library("tidyverse")
 vaccines <- read.csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv")
-View(vaccines)
-
 
 #Separate United States cumulative data total vaccinations and total distribution data 
 #to find the numbers over time
@@ -10,12 +8,11 @@ us_vaccines <- vaccines %>%
   filter(location == "United States") %>%
   group_by(date) %>%
   summarise(date, people_fully_vaccinated)
-View(us_vaccines)
+
 #Create table where it has the cumulative data for the columns below on the latest date of each month
 #in 2021 for the US.
 jan_vaccines <- us_vaccines %>%
   filter(date == "2021-01-31")
-View(jan_vaccines)
 
 feb_vaccines <- us_vaccines %>%
   filter(date == "2021-02-28")
@@ -51,7 +48,6 @@ us_months_vaccines <- rbind(jan_vaccines, feb_vaccines, mar_vaccines, apr_vaccin
                             may_vaccines, jun_vaccines, jul_vaccines, aug_vaccines, sep_vaccines, 
                             oct_vaccines, nov_vaccines)
 arrange(us_months_vaccines, date)
-View(us_months_vaccines)                
 
 vaccines_bar_chart <- ggplot(us_months_vaccines) +
   geom_col(mapping = aes(x = date, y = people_fully_vaccinated)) + coord_flip() +
