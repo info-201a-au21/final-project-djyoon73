@@ -6,15 +6,12 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+
+source("analysis.R")
+
 knitr::opts_chunk$set(echo = TRUE)
-source("SummaryInformation.R")
-source("Scatterplot.R")
-source("BoxPlot.R")
-source("BarChart.R")
-source("AggregateTable.R")
 ```
 
-# Exploratory Analysis 
 
 ## Introduction
 
@@ -27,15 +24,19 @@ In our analysis, we filtered through the various institutions and territories to
 
 
 ## Aggregate Table
+
 ```{r echo = FALSE}
 agg_table
 ```
+	
 	We had a lot of data to sift through to create a readable table. Being more specific, we had over 15000 rows that we had to reduce to a readable dataset. To start, we grouped by state, rather than date. This is because a lot of the data is measured per day, but taking the aggregate would aid the understanding of a person reading. We took the sum of tables with raw data, such as vaccinations per day, and total vaccinations distributed. However, with proportionate data, such as data per 100 people, we took the average so it stays an accurate, readable proportion.
 
 ## Chart 1: Bar Chart 
+
 ```{r echo = FALSE}
 vaccines_bar_chart
 ```
+
 _PURPOSE:_
 This bar chart shows the number of fully vaccinated people by the end of each month in the US. The purpose of this chart is to visualize how many people are fully vaccinated currently and how the US as a whole has progressed by each month during the year of 2021. We excluded the 2020 data, since there was a incredibly small possibility people were fully vaccinated then since the vaccine had just been approved for usage and the two doses require a three week period. 
 
@@ -43,9 +44,11 @@ _INSIGHTS:_
 We noticed how there were large leaps in fully vaccinated people from March to April to May. This may be a sign of states allowing everyone beyond the elderly and immunocompromised being eligible for vaccines. The rate of fully vaccinated people increasing seems to have slowed down despite a significant portion of the American population still not being fully vaccinated. However, this slow growth may also be a positive indicator that such a significant population is fully vaccinated that it may be enough to generate herd immunity.
 
 ## Chart 2: Scatterplot
+
 ```{r echo = FALSE}
 vaccine_scatterplot
 ```
+
 _PURPOSE:_
 	This scatter plot compares two continuous variables: Total Vaccines Distributed per 100 People and People Fully Vaccinated per 100 People. The purpose of this plot was to see the relationship between vaccines distributed, and whether they were being used to fully vaccinate people.
 
@@ -53,9 +56,11 @@ _INSIGHTS:_
 	From looking at this scatter plot, we can see that there is a strong positive correlation between the rate of people vaccinated and the rate of vaccines distributed. However, we can also see that the correlation could be much higher. On a few occasions, we see states with plenty of vaccines distributed that still have a lower vaccination rate than others with fewer vaccines distributed. This could be for two reasons that I can think of. Either the people in that state are less wanting to get vaccinated, or the state has a policy, like London does, where they prioritize first doses before scheduling people for their second. The latter reason would lower the rate of people fully vaccinated, although the vaccines are still being put to use.
 
 ## Chart 3: Boxplot
+
 ```{r echo = FALSE}
 vaccine_boxplot
 ```
+
 _PURPOSE:_
 	We created this boxplot of people vaccinated per 100 people. The main reason we created this was to see the range, and to see if there were any states that were outliers. We thought that if so, we could further investigate the reason why they are outliers.
 	
