@@ -25,7 +25,7 @@ In our analysis, we filtered through the various institutions and territories to
 
 ## Aggregate Table
 
-```{r echo = FALSE}
+```{r agg_table, echo = FALSE}
 agg_table
 ```
 	
@@ -33,7 +33,7 @@ agg_table
 
 ## Chart 1: Bar Chart 
 
-```{r echo = FALSE}
+```{r vaccines_bar_chart, echo = FALSE}
 vaccines_bar_chart
 ```
 
@@ -45,7 +45,7 @@ We noticed how there were large leaps in fully vaccinated people from March to A
 
 ## Chart 2: Scatterplot
 
-```{r echo = FALSE}
+```{r vaccine_scatterplot, echo = FALSE}
 vaccine_scatterplot
 ```
 
@@ -57,7 +57,7 @@ _INSIGHTS:_
 
 ## Chart 3: Boxplot
 
-```{r echo = FALSE}
+```{r vaccine_boxplot, echo = FALSE}
 vaccine_boxplot
 ```
 
