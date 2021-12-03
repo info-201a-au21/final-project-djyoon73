@@ -57,7 +57,7 @@ blank_theme <- theme_bw() +
   )
 
 # Draw the map
-ggplot(state_shape) +
+map_plot <- ggplot(state_shape) +
   geom_polygon(
     mapping = aes(x = long, y = lat, group = group, fill = people_fully_vaccinated_per_hundred),
     color = "white",
