@@ -51,8 +51,3 @@ vaccine_scatterplot <- ggplot(agg_table, aes(
     x = "Total Vaccines Distributed",
     y = "People Fully Vaccinated"
   )
-
-
-
-
-
