@@ -59,14 +59,14 @@ _PURPOSE:_
 _INSIGHTS:_
 	From looking at this scatter plot, we can see that there is a strong positive correlation between the rate of people vaccinated and the rate of vaccines distributed. However, we can also see that the correlation could be much higher. On a few occasions, we see states with plenty of vaccines distributed that still have a lower vaccination rate than others with fewer vaccines distributed. This could be for two reasons that I can think of. Either the people in that state are less wanting to get vaccinated, or the state has a policy, like London does, where they prioritize first doses before scheduling people for their second. The latter reason would lower the rate of people fully vaccinated, although the vaccines are still being put to use.
 
-## Chart 3: Boxplot
+## Chart 3: Map
 
-```{r vaccine_boxplot, echo = FALSE}
-vaccine_boxplot
+```{r map_plot, echo = FALSE}
+map_plot
 ```
 
 _PURPOSE:_
-	We created this boxplot of people vaccinated per 100 people. The main reason we created this was to see the range, and to see if there were any states that were outliers. We thought that if so, we could further investigate the reason why they are outliers.
+	We created a map of the proportion of people currently fully vaccinated per hundred to understand which states and regions are leading in terms of their proportion of residents fully vaccinated. The brighter the shade of red, the higher the rate is of fully vaccinated folks and is it gets darker blue, the lower the rate is.
 	
 _INSIGHTS:_
-	As we can see, there are no outliers in our data. However, we can see that the range spans over 15 points. This is significant, as although not an outlier, it still shows that there is a big difference between states in terms of getting people vaccinated.
+	As we can see, the coastal states of the West Coast and Northeastern states have higher rates of fully vaccinated people per hundred in comparison to the deep South. This could be correlated to stricter vaccination policies in the coastal states for people returning to their workplaces and schools and for visitng public establishments. If so, these higher rates are a sign that these policies are effective in incentivising vaccinations. 
