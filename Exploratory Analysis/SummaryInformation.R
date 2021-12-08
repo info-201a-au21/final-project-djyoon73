@@ -1,7 +1,7 @@
 library("dplyr")
 library("tidyverse")
 vaccines <- read.csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv")
-View(vaccines)
+
 
 #How many observations are in the vaccines data set?
 obs_vaccines <- nrow(vaccines)
@@ -18,11 +18,10 @@ people_fully_vaccinated_per_tenthousand <- vaccines %>%
 #Separate United States cumulative data into a different data frame from the states and territories?
 us_vaccines <- vaccines %>%
   filter(location == "United States")
-View(us_vaccines)
+
 
 regional_vaccines <- vaccines %>%
   filter(location != "United States")
-View(regional_vaccines)
 
 state_vaccines <- regional_vaccines %>%
   filter(location != "American Samoa") %>%
@@ -38,7 +37,7 @@ state_vaccines <- regional_vaccines %>%
   filter(location != "Bureau of Prisons") %>%
   filter(location != "Veterans Health") %>%
   filter(location != "Long Term Care") 
-View(state_vaccines)
+
 #Which state has the highest fully vaccinated rate?
 highest_state_fully_vaccinated <- state_vaccines %>%
   filter(date == max(date)) %>%
@@ -56,7 +55,7 @@ regional_fully_vaccinated <- state_vaccines %>%
   filter(people_fully_vaccinated_per_hundred >= 0) %>%
   filter(date == max(date)) %>%
   pull(location, people_fully_vaccinated_per_hundred)
-print(regional_fully_vaccinated)
+
 
 #Which state is currently the most effective at using its doses?
 highest_dose_usage <- state_vaccines %>%
@@ -80,4 +79,4 @@ summary_info$regional_fullvax <- regional_fully_vaccinated
 summary_info$highest_dosage_state <- highest_dose_usage
 summary_info$lowest_dosage_state <- lowest_dose_usage
 
-summary_info
+
