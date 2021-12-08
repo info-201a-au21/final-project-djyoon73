@@ -53,7 +53,7 @@ vaccines_bar_chart <- ggplot(us_months_vaccines) +
   geom_col(mapping = aes(x = date, y = people_fully_vaccinated)) + coord_flip() +
   labs(
     title = "Fully Vaccinated People in US by Month", # plot title
-    x = "Number of People Fully Vaccinated", # x-axis label
-    y = "2021 Ending Date (with data collected) of each Month", # y-axis label
+    x = "2021 Ending Date (with data collected) of each Month", # x-axis label
+    y = "Number of People Fully Vaccinated", # y-axis label
   )
 
