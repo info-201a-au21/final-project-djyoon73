@@ -11,6 +11,7 @@ source("SummaryInformation.R")
 source("MapPlot.R")
 source("BarChart.R")
 source("Scatterplot.R")
+source("AggregateTable.R")
 
 ```
 
@@ -27,11 +28,13 @@ In our analysis, we filtered through the various institutions and territories to
 
 ## Aggregate Table
 
-```{r agg_table, echo = FALSE, warning=FALSE}
-summary_info
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+kable(agg_table, caption = "US Vaccine Tracker")
 ```
 	
-	We had a lot of data to sift through to create a readable table. Being more specific, we had over 15000 rows that we had to reduce to a readable dataset. To start, we grouped by state, rather than date. This is because a lot of the data is measured per day, but taking the aggregate would aid the understanding of a person reading. We took the sum of tables with raw data, such as vaccinations per day, and total vaccinations distributed. However, with proportionate data, such as data per 100 people, we took the average so it stays an accurate, readable proportion.
+
+We had a lot of data to sift through to create a readable table. Being more specific, we had over 15000 rows that we had to reduce to a readable dataset. To start, we grouped by state, rather than date. This is because a lot of the data is measured per day, but taking the aggregate would aid the understanding of a person reading. We took the sum of tables with raw data, such as vaccinations per day, and total vaccinations distributed. However, with proportionate data, such as data per 100 people, we took the average so it stays an accurate, readable proportion.
 
 ## Chart 1: Bar Chart 
 
