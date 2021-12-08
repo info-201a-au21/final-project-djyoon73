@@ -7,7 +7,11 @@ output: html_document
 
 ```{r setup, include=FALSE}
 
-source("analysis.R")
+source("AggregateTable.R")
+source("BarChart.R")
+source("BoxPlot.R")
+source("SummaryInformation")
+source("Scatterplot.R")
 
 knitr::opts_chunk$set(echo = TRUE)
 ```

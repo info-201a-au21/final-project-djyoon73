@@ -40,10 +40,17 @@ agg_table <- state_vaccines %>% group_by(location) %>%
 
 
 #Create Scatterplot
-vaccine_scatterplot <- plot(agg_table$total_dist_per_100, agg_table$people_fullvax_per_100, main = "People Vaccinated per Vaccines Distributed", 
-     xlab = "Total Vaccines Distributed",
-     ylab = "People Fully Vaccinated",
-     sub = "All Values are per 100 People", col.sub = "red")
+vaccine_scatterplot <- ggplot(agg_table, aes(
+  x = as.numeric(total_dist_per_100),
+  y = as.numeric(people_fullvax_per_100)
+)) + geom_point() +
+  geom_smooth(method=lm, se=FALSE) +
+  labs(
+    title = "People Vaccinated Per Vaccines Distributed",
+    subtitle = "All values calculated are per 100 people.",
+    x = "Total Vaccines Distributed",
+    y = "People Fully Vaccinated"
+  )
 
 
 
