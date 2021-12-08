@@ -6,14 +6,12 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-
-source("AggregateTable.R")
+knitr::opts_chunk$set(echo = TRUE)
+source("SummaryInformation.R")
+source("MapPlot.R")
 source("BarChart.R")
-source("BoxPlot.R")
-source("SummaryInformation")
 source("Scatterplot.R")
 
-knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
@@ -29,15 +27,15 @@ In our analysis, we filtered through the various institutions and territories to
 
 ## Aggregate Table
 
-```{r agg_table, echo = FALSE}
-agg_table
+```{r agg_table, echo = FALSE, warning=FALSE}
+summary_info
 ```
 	
 	We had a lot of data to sift through to create a readable table. Being more specific, we had over 15000 rows that we had to reduce to a readable dataset. To start, we grouped by state, rather than date. This is because a lot of the data is measured per day, but taking the aggregate would aid the understanding of a person reading. We took the sum of tables with raw data, such as vaccinations per day, and total vaccinations distributed. However, with proportionate data, such as data per 100 people, we took the average so it stays an accurate, readable proportion.
 
 ## Chart 1: Bar Chart 
 
-```{r vaccines_bar_chart, echo = FALSE}
+```{r vaccines_bar_chart, echo = FALSE, warning=FALSE}
 vaccines_bar_chart
 ```
 
@@ -49,7 +47,7 @@ We noticed how there were large leaps in fully vaccinated people from March to A
 
 ## Chart 2: Scatterplot
 
-```{r vaccine_scatterplot, echo = FALSE}
+```{r vaccine_scatterplot, echo = FALSE, warning=FALSE}
 vaccine_scatterplot
 ```
 
@@ -61,8 +59,8 @@ _INSIGHTS:_
 
 ## Chart 3: Map
 
-```{r map_plot, echo = FALSE}
-map_plot
+```{r map_plot, echo = FALSE, warning=FALSE}
+plot(map_plot)
 ```
 
 _PURPOSE:_
