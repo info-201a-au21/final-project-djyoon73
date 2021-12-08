@@ -70,3 +70,5 @@ map_plot <- ggplot(state_shape) +
     title = "US Current Fully Vaccinated People per Hundred"
   ) +
   blank_theme
+
+
