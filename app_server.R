@@ -1,6 +1,7 @@
 library("dplyr")
 library("stringr")
 vaccines <- read.csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv")
+source("app_ui.R")
 
 # interactive page three
 #data table when making charts based on regions
@@ -168,30 +169,56 @@ blank_theme <- theme_bw() +
   )
 
 # Draw the map
-map_plot <- ggplot(state_shape) +
-  geom_polygon(
-    mapping = aes(x = long, y = lat, group = group, fill = people_fully_vaccinated_per_hundred),
-    color = "white",
-    size = .1
-  ) +
-  coord_map() +
-  scale_fill_continuous(low = "#132B43", high = "Red") +
-  labs(
-    fill = "Number of People Fully Vaccinated per Hundred",
-    title = "US Current Fully Vaccinated People per Hundred"
-  ) +
-  blank_theme
 
-#interactive page three
-tests=data.frame(row.names=c("people_fully_vaccinated","share_doses_used","total_vaccinations", "total_distributed")
-                 , val=c("People Fully Vaccinated","Share of Available Doses Used", "Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
-
-teststwo=data.frame(row.names=c("share_doses_used","total_vaccinations","total_distributed")
-                 , val=c("Share of Available Doses Used","Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
+# map_plot <- ggplot(state_shape) +
+#   geom_polygon(
+#     mapping = aes(x = long, y = lat, group = group, fill = people_fully_vaccinated_per_hundred),
+#     color = "white",
+#     size = .1
+#   ) +
+#   coord_map() +
+#   scale_fill_continuous(low = input$low, high = input$high) +
+#   labs(
+#     fill = "Number of People Fully Vaccinated per Hundred",
+#     title = "US Current Fully Vaccinated People per Hundred"
+#   ) +
+#   blank_theme
+# 
+# #interactive page three
+# tests=data.frame(row.names=c("people_fully_vaccinated","share_doses_used","total_vaccinations", "total_distributed")
+#                  , val=c("People Fully Vaccinated","Share of Available Doses Used", "Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
+# 
+# teststwo=data.frame(row.names=c("share_doses_used","total_vaccinations","total_distributed")
+#                  , val=c("Share of Available Doses Used","Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
 
 #Interactive pages setup
 
 server <- function(input, output) {
+#   output$map <- renderPlotly({
+#   map_plot <- ggplot(state_shape) +
+#     geom_polygon(
+#       mapping = aes(x = long, y = lat, group = group),
+#       color = "white",
+#       size = .1
+#     ) +
+#     coord_map() +
+#     scale_fill_continuous(low = "White", high = "Green") +
+#     labs(
+#       fill = "Number of People Fully Vaccinated per Hundred",
+#       title = "US Current Fully Vaccinated People per Hundred"
+#     ) +
+#     blank_theme
+#  
+#   
+#   #interactive page three
+#   tests=data.frame(row.names=c("people_fully_vaccinated","share_doses_used","total_vaccinations", "total_distributed")
+#                    , val=c("People Fully Vaccinated","Share of Available Doses Used", "Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
+#   
+#   teststwo=data.frame(row.names=c("share_doses_used","total_vaccinations","total_distributed")
+#                       , val=c("Share of Available Doses Used","Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
+#   
+#   return(map_plot)
+#   })
   
   output$timePlot <- renderPlotly({
     by_month_vaccines <- us_months_vaccines%>%
@@ -219,7 +246,7 @@ server <- function(input, output) {
   
   
   output$map <- renderPlotly({ 
-    my_plot_two <- ggplot(state_shape) + 
+    my_plot_two <- ggplot(state_shape) +
       geom_polygon(
         mapping = aes(x = long, y = lat, group = group, fill = !!as.name(input$mapvar),
                       text = paste("Share of Available Doses Used:", share_doses_used, "<br>",
@@ -229,7 +256,7 @@ server <- function(input, output) {
         size = .1
       ) +
       coord_map() +
-      scale_fill_continuous(low = "#132B43", high = "Red") + 
+      scale_fill_continuous(low = input$low, high = input$high) +
       labs(
         fill = teststwo[input$mapvar,], #how do I get the fill label to be the variable input chosen
         title = "US Geographical Distribution of Vaccine Rates"
@@ -264,3 +291,4 @@ server <- function(input, output) {
   
   
 }
+
