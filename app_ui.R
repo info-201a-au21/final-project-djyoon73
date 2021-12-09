@@ -106,7 +106,7 @@ map_sidebar_content <- sidebarPanel(
       "Share of Available Doses Used" = "share_doses_used",
       "Total Vaccine Doses Administered" = "total_vaccinations",
       "Total Vaccine Doses Supplied" = "total_distributed"
-    )
+    ),
   )
 )
 
@@ -206,6 +206,50 @@ plot_three_tab <- tabPanel(
   )
 )
 
+#summary takeaways tab
+summary_takeaways <- tabPanel(
+  "Summary Takeaways",
+  titlePanel("Key Summary Takeaways"),
+  fluidPage(
+    tags$div(
+      tags$p(
+        "Our first visualization of US Vaccine data over time shows that over the 
+        12 months since the vaccine became available, the number of people fully 
+        vaccinated steadily increased, with the most rapid growth occurring between
+        February of 2021 to June of 2021. The total number of vaccines administered as well 
+        as the total number of vaccines supplied follow a very similar trend to the 
+        number of people fully vaccinated, proving a positive correlation between 
+        the two variables. However, the share of available doses used do not follow 
+        a similar trend. In January, the share of available doses was very low at only around 62.3%
+        of total doses being utilized. After, the share of doses used increases 
+        to 78% and continues to increase to reach a peak of 86.3% of vaccines being used. 
+        Regardless, this still shows that not all shares of available doses are being
+        used."),
+      tags$p(
+        "Our second visualization displaying US vaccine data geographically shows the
+        similarity of total vaccine doses supplied to total vaccine doses administered. 
+        California has the highest number of total vaccine doses supplied with little over 7 million,
+        as well as the highest number of total vaccine doses administered with little over 6 million
+        doses administered. Again, we notice a gap between the number of vaccines supplied versus
+        the number of vaccines administered, which can be seen by selecting the share of available doses used. 
+        Alabama utilizes the least share of available doses, at 67.8% of total available
+        doses used."),
+      tags$p(
+        "Our third visualization looks at the proportion of people fully vaccinated
+        by region. We can conclude that the Northeast states have the highest proportion
+        of people fully vaccinated, with an average of 70% of people being fully vaccinated. 
+        On average, 58% of people in the Western states, 55.6% of people in the 
+        Southern states, and 56 % of people in the Midwestern states being fully vaccinated.
+        Vermont had the highest state proportion of people fully vaccinated, at 74.38% being 
+        fully vaccinated."),
+      tags$p(
+        "These various visualizations show that the US needs to increase efficiency in administering 
+        doses to maximize usage. This also shows that many regions of the US, especially the Western, Southern, 
+        and Midwestern states have long ways to go before the majority of the population is fully vaccinated."
+      )
+  )
+  )
+)
 
 #final user interactive output
 ui <- navbarPage(
@@ -213,5 +257,6 @@ ui <- navbarPage(
   intro_tab,
   plot_one_tab,
   plot_two_tab,
-  plot_three_tab
+  plot_three_tab,
+  summary_takeaways
 )
