@@ -5,14 +5,14 @@ intro_tab <- tabPanel(
     h2(style = "color:green", "Introduction"),
     img(src = "covidvaccine.png", width = "50%", align = "right"),
     p("Our group is interested in the field/domain of COVID vaccination in America. 
-    We are interested in this because its data relevant to how our lives will proceed in 
+    We are interested in this because it’s data relevant to how our lives will proceed in 
     these next few months and years, as public health and the end of the pandemic depends 
     on the rate of vaccination. Our team is interested in seeing how different parts of the 
     United States are proceeding in terms of vaccination, fully vaccinated people, and how 
-    many of the doses they are using, since there's been talks of vaccine doses wastage."),
-    p("The data set we're using was collected by Our World In Data. For global vaccination data,
+    many of the doses they are using, since there’s been talks of vaccine doses wastage."),
+    p("The data set we’re using was collected by Our World In Data. For global vaccination data,
       metrics were drawn from the latest revision of the United Nations World Population Prospects. 
-      For United States vaccination data, which is the metrics we're relying on, the values were 
+      For United States vaccination data, which is the metrics we’re relying on, the values were 
       taken from daily updated data by the United States Centers for Disease Control and Prevention. 
       We focused on the United States data to inform our understanding on how vaccination efforts 
       are going in our country."),
@@ -129,7 +129,19 @@ map_sidebar_content <- sidebarPanel(
       "Share of Available Doses Used" = "share_doses_used",
       "Total Vaccine Doses Administered" = "total_vaccinations",
       "Total Vaccine Doses Supplied" = "total_distributed"
-    ),
+    )
+  ),
+  selectInput(
+    inputId = "low",
+    label = "Gradient Low",
+    choices = c("Red", "Blue", "Green", "Orange"),
+    selected = "Green"
+  ),
+  selectInput(
+    inputId = "high",
+    label = "Gradient High",
+    choices = c("Red", "Blue", "Green", "Orange"),
+    selected = "Blue"
   )
 )
 
@@ -270,7 +282,7 @@ summary_takeaways <- tabPanel(
         doses to maximize usage. This also shows that many regions of the US, especially the Western, Southern, 
         and Midwestern states have long ways to go before the majority of the population is fully vaccinated."
       )
-  )
+    )
   )
 )
 
@@ -283,3 +295,4 @@ ui <- navbarPage(
   plot_three_tab,
   summary_takeaways
 )
+
