@@ -1,8 +1,31 @@
 #introduction tab
 intro_tab <- tabPanel(
-  "Intro",
+  "Introduction",
   fluidPage(
-    p("Put in introduction information here later")
+    h2(style = "color:green", "Introduction"),
+    img(src = "covidvaccine.png", width = "50%", align = "right"),
+    p("Our group is interested in the field/domain of COVID vaccination in America. 
+    We are interested in this because it’s data relevant to how our lives will proceed in 
+    these next few months and years, as public health and the end of the pandemic depends 
+    on the rate of vaccination. Our team is interested in seeing how different parts of the 
+    United States are proceeding in terms of vaccination, fully vaccinated people, and how 
+    many of the doses they are using, since there’s been talks of vaccine doses wastage."),
+    p("The data set we’re using was collected by Our World In Data. For global vaccination data,
+      metrics were drawn from the latest revision of the United Nations World Population Prospects. 
+      For United States vaccination data, which is the metrics we’re relying on, the values were 
+      taken from daily updated data by the United States Centers for Disease Control and Prevention. 
+      We focused on the United States data to inform our understanding on how vaccination efforts 
+      are going in our country."),
+    h2(style = "color:red", "Key Questions"),
+    p("The key questions we are hoping to answer are as follows:"),
+    p("   - How has the total people vaccinated, as well as dosage statistics, changed over time in 2021?"),
+    p("   - How does the share of available, administered, and supplied doses vary by state?"),
+    p("   - How does the proportion of people vaccinated vary by region?"),
+    p("In order to answer the above questions, we have created three interactive visualisations that feature different 
+      aspects of our dataset. For the first question, we broke down our data by month, and plotted a user choice of 
+      values over the year 2021. Our map features a color gradient showing the proportion of the chosen value, and 
+      we grouped our data by each State in order to do this. The answer to our final question features a barchart, where
+      we grouped our data by region and added an x-axis slider for ease of viewing.")
   )
 )
 
