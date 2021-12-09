@@ -219,7 +219,7 @@ server <- function(input, output) {
   
   
   output$map <- renderPlotly({ 
-    my_plot_two <- ggplot(state_shape) +
+    my_plot_two <- ggplot(state_shape) + 
       geom_polygon(
         mapping = aes(x = long, y = lat, group = group, fill = !!as.name(input$mapvar),
                       text = paste("Share of Available Doses Used:", share_doses_used, "<br>",
@@ -229,7 +229,7 @@ server <- function(input, output) {
         size = .1
       ) +
       coord_map() +
-      scale_fill_continuous(low = "#132B43", high = "Red") +
+      scale_fill_continuous(low = "#132B43", high = "Red") + 
       labs(
         fill = teststwo[input$mapvar,], #how do I get the fill label to be the variable input chosen
         title = "US Geographical Distribution of Vaccine Rates"
