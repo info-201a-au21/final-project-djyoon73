@@ -1,0 +1,217 @@
+#introduction tab
+intro_tab <- tabPanel(
+  "Intro",
+  fluidPage(
+    p("Put in introduction information here later")
+  )
+)
+
+## INTERACTIVE PLOT ONE
+us_vaccines <- vaccines %>%
+  filter(location == "United States") %>%
+  group_by(date)
+
+jan_vaccines <- us_vaccines %>%
+  filter(date == "2021-01-31") %>%
+  mutate(date = "January")
+
+feb_vaccines <- us_vaccines %>%
+  filter(date == "2021-02-28") %>%
+  mutate(date = "February")
+
+mar_vaccines <- us_vaccines %>%
+  filter(date == "2021-03-31") %>%
+  mutate(date = "March")
+
+apr_vaccines <- us_vaccines %>%
+  filter(date == "2021-04-30") %>%
+  mutate(date = "April")
+
+may_vaccines <- us_vaccines %>%
+  filter(date == "2021-05-30") %>%
+  mutate(date = "May")
+
+jun_vaccines <- us_vaccines %>%
+  filter(date == "2021-06-30") %>%
+  mutate(date = "June")
+
+jul_vaccines <- us_vaccines %>%
+  filter(date == "2021-07-31") %>%
+  mutate(date = "July")
+
+aug_vaccines <- us_vaccines %>%
+  filter(date == "2021-08-31") %>%
+  mutate(date = "August")
+
+sep_vaccines <- us_vaccines %>%
+  filter(date == "2021-09-30") %>%
+  mutate(date = "September")
+
+oct_vaccines <- us_vaccines %>%
+  filter(date == "2021-10-31") %>%
+  mutate(date = "October")
+
+nov_vaccines <- us_vaccines %>%
+  filter(date == "2021-11-30") %>%
+  mutate(date = "November")
+
+us_months_vaccines <- rbind(jan_vaccines, feb_vaccines, mar_vaccines, apr_vaccines,
+                            may_vaccines, jun_vaccines, jul_vaccines, aug_vaccines, sep_vaccines, 
+                            oct_vaccines, nov_vaccines)
+
+months_unique <- unique(us_months_vaccines$date)
+
+#side panel for selecting y-axis variable and month for page one
+plot_sidebar <- sidebarPanel(
+  selectInput(
+    inputId = "y_axis_input",
+    label = "Vaccination Variable",
+    choices = list("People Fully Vaccinated" = "people_fully_vaccinated",
+                   "Share of Available Doses Used" = "share_doses_used",
+                   "Total Vaccine Doses Administered" = "total_vaccinations",
+                   "Total Vaccine Doses Supplied" = "total_distributed"),
+    selected = "people_fully_vaccinated"
+  ),
+  checkboxGroupInput(
+    inputId = "month_input",
+    label = "Month",
+    choices = months_unique,
+    selected = months_unique
+  )
+)
+
+#main panel for the plot for page one
+plot_main <- mainPanel(
+  plotlyOutput(outputId = "timePlot")
+)
+
+#main panel and side panel combined
+plot_one_tab <- tabPanel(
+  "US Vaccine Data over Time",
+  sidebarLayout(
+    plot_sidebar,
+    plot_main
+  )
+)
+
+##INTERACTIVE PAGE TWO 
+#side panels for page two, selection and Ray and Ivanna said it was okay to make
+#a color widget
+
+map_sidebar_content <- sidebarPanel(
+  selectInput(
+    inputId = "mapvar",
+    label = "Variable to Map",
+    choices = list(
+      "Share of Available Doses Used" = "share_doses_used",
+      "Total Vaccine Doses Administered" = "total_vaccinations",
+      "Total Vaccine Doses Supplied" = "total_distributed"
+    )
+  )
+)
+
+#main panel for page two
+map_main_content <- mainPanel(
+  plotlyOutput("map")
+)
+
+#main and side panels combined for page two
+plot_two_tab <- tabPanel(
+  "US Vaccine Data Geographically",
+  titlePanel("US Vaccine Data Geographically"),
+  sidebarLayout(
+    map_sidebar_content,
+    map_main_content
+  )
+)
+## INTERACTIVE PAGE THREE 
+vaccines <- read.csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv")
+
+#data loaded in ui for the interactive chart 
+current_vaccines <- vaccines %>%
+  filter(location != "United States")%>%
+  filter(location != "American Samoa") %>%
+  filter(location != "Guam") %>%
+  filter(location != "Federated States of Micronesia") %>%
+  filter(location != "Indian Health Svc") %>%
+  filter(location != "Marshall Islands") %>%
+  filter(location != "Dept of Defense") %>%
+  filter(location != "Puerto Rico") %>%
+  filter(location != "Virgin Islands") %>%
+  filter(location != "Northern Mariana Islands") %>%
+  filter(location != "Republic of Palau") %>%
+  filter(location != "Bureau of Prisons") %>%
+  filter(location != "Veterans Health") %>%
+  filter(location != "Long Term Care") %>%
+  filter(location != "District of Columbia") %>%
+  group_by(location) %>%
+  na.omit(date) %>%
+  filter(date == max(date), na.rm = TRUE)
+
+ne_vaccines <- current_vaccines %>%
+  filter(location %in%  c("New Hampshire", "Vermont", "Massachusetts", 
+                          "New York State", "Rhode Island", "Connecticut",
+                          "New Jersey", "Pennsylvania", "Maine")) %>%
+  mutate(region = "Northeast")
+
+west_vaccines <- current_vaccines %>%
+  filter(location %in%  c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", 
+                          "Arizona", "Utah", "Nevada", "California", "Oregon", 
+                          "Washington", "Alaska", "Hawaii")) %>%
+  mutate(region = "West")
+
+south_vaccines <- current_vaccines %>%
+  filter(location %in%  c("Delaware", "Maryland", "Virginia", "West Virginia", 
+                          "Kentucky", "North Carolina", "South Carolina", "Tennessee", "Georgia", 
+                          "Florida", "Alabama", "Mississippi", "Arkansas", "Louisiana", "Texas",  
+                          "Oklahoma")) %>%
+  mutate(region = "South")
+
+midwest_vaccines <- current_vaccines %>%
+  filter(location %in%  c("Ohio", "Michigan", "Indiana", "Wisconsin", "Illinois", 
+                          "Minnesota", "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", 
+                          "Kansas")) %>%
+  mutate(region = "Midwest")
+
+current_region_vaccines <- rbind(ne_vaccines, west_vaccines, south_vaccines, midwest_vaccines)
+
+region_unique <- unique(current_region_vaccines$region)
+
+# sidepanels of selection and slider for page three
+bar_chart_sidebar <- sidebarPanel(
+  selectInput(
+    inputId = "region_input",
+    label = "US Region",
+    choices = region_unique,
+    selected = region_unique
+  ),
+  sliderInput(
+    inputId = "people",
+    label = "People Fully Vaccinated Per Hundred", min = 0, max = 100, value = c(0, 100)
+  )
+)
+
+#main panel for page three
+plot_main_three <- mainPanel(
+  plotlyOutput(outputId = "barPlot")
+)
+
+#main and side panels combined for page three
+plot_three_tab <- tabPanel(
+  "Fully Vaccinated People per Hundred by US Region",
+  titlePanel("US Vaccine Data Geographically"),
+  sidebarLayout(
+    bar_chart_sidebar,
+    plot_main_three
+  )
+)
+
+
+#final user interactive output
+ui <- navbarPage(
+  "US Covid Vaccine Rates",
+  intro_tab,
+  plot_one_tab,
+  plot_two_tab,
+  plot_three_tab
+)
