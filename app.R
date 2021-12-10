@@ -1,5 +1,8 @@
 # Load libraries so they are available
 library("shiny")
+library("dplyr")
+library("stringr")
+
 
 # Use source() to execute the `app_ui.R` and `app_server.R` files. These will
 # define the UI value and server function respectively.

@@ -1,3 +1,10 @@
+library("dplyr")
+library("stringr")
+library("shiny")
+library("plotly")
+library("mapproj")
+vaccines <- read.csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv")
+
 #introduction tab
 intro_tab <- tabPanel(
   "Introduction",
@@ -5,16 +12,16 @@ intro_tab <- tabPanel(
     h2(style = "color:green", "Introduction"),
     img(src = "covidvaccine.png", width = "50%", align = "right"),
     p("Our group is interested in the field/domain of COVID vaccination in America. 
-    We are interested in this because it’s data relevant to how our lives will proceed in 
+    We are interested in this because it is relevant to how our lives will proceed in 
     these next few months and years, as public health and the end of the pandemic depends 
     on the rate of vaccination. Our team is interested in seeing how different parts of the 
     United States are proceeding in terms of vaccination, fully vaccinated people, and how 
-    many of the doses they are using, since there’s been talks of vaccine doses wastage."),
-    p("The data set we’re using was collected by Our World In Data. For global vaccination data,
-      metrics were drawn from the latest revision of the United Nations World Population Prospects. 
-      For United States vaccination data, which is the metrics we’re relying on, the values were 
-      taken from daily updated data by the United States Centers for Disease Control and Prevention. 
-      We focused on the United States data to inform our understanding on how vaccination efforts 
+    many of the doses they are using, since there's been talks of vaccine doses wastage."),
+    p("The data set we're using was collected by Our World In Data. For global vaccination data,
+      metrics were drawn from the latest revision of the", em("United Nations World Population Prospects."), 
+      "For United States vaccination data, which is the metrics we're relying on, the values were 
+      taken from daily updated data by the", em("United States Centers for Disease Control and Prevention."), 
+      "We focused on the United States data to inform our understanding on how vaccination efforts 
       are going in our country."),
     h2(style = "color:red", "Key Questions"),
     p("The key questions we are hoping to answer are as follows:"),
@@ -111,6 +118,7 @@ plot_main <- mainPanel(
 #main panel and side panel combined
 plot_one_tab <- tabPanel(
   "US Vaccine Data over Time",
+  titlePanel("US Vaccine Data Over Time"),
   sidebarLayout(
     plot_sidebar,
     plot_main
@@ -234,7 +242,7 @@ plot_main_three <- mainPanel(
 #main and side panels combined for page three
 plot_three_tab <- tabPanel(
   "Fully Vaccinated People per Hundred by US Region",
-  titlePanel("US Vaccine Data Geographically"),
+  titlePanel("Fully Vaccinated People by US Region"),
   sidebarLayout(
     bar_chart_sidebar,
     plot_main_three
@@ -259,7 +267,7 @@ summary_takeaways <- tabPanel(
         of total doses being utilized. After, the share of doses used increases 
         to 78% and continues to increase to reach a peak of 86.3% of vaccines being used. 
         Regardless, this still shows that not all shares of available doses are being
-        used."),
+        used and that there is a wastage of vaccines."),
       tags$p(
         "Our second visualization displaying US vaccine data geographically shows the
         similarity of total vaccine doses supplied to total vaccine doses administered. 

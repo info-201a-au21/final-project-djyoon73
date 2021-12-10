@@ -1,5 +1,6 @@
 library("dplyr")
 library("stringr")
+library("shiny")
 vaccines <- read.csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv")
 source("app_ui.R")
 
@@ -185,11 +186,11 @@ blank_theme <- theme_bw() +
 #   blank_theme
 # 
 # #interactive page three
-# tests=data.frame(row.names=c("people_fully_vaccinated","share_doses_used","total_vaccinations", "total_distributed")
-#                  , val=c("People Fully Vaccinated","Share of Available Doses Used", "Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
-# 
-# teststwo=data.frame(row.names=c("share_doses_used","total_vaccinations","total_distributed")
-#                  , val=c("Share of Available Doses Used","Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
+tests=data.frame(row.names=c("people_fully_vaccinated","share_doses_used","total_vaccinations", "total_distributed")
+                 , val=c("People Fully Vaccinated","Share of Available Doses Used", "Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
+
+teststwo=data.frame(row.names=c("share_doses_used","total_vaccinations","total_distributed")
+                 , val=c("Share of Available Doses Used","Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
 
 #Interactive pages setup
 
@@ -282,7 +283,7 @@ server <- function(input, output) {
       title = "State Proportion of People Fully Vaccinated Per Hundred People by US Region", # plot title
       x = "State", # x-axis label
       y = "Proportion of People Fully Vaccinated Per Hundred") +
-      scale_y_continuous(limits = input$people)
+      scale_x_continuous(limits = input$people)
     
     my_bar_plot <- ggplotly(my_plot_three, tooltip = "text")
     
