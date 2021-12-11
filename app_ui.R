@@ -289,7 +289,17 @@ summary_takeaways <- tabPanel(
         "These various visualizations show that the US needs to increase efficiency in administering 
         doses to maximize usage. This also shows that many regions of the US, especially the Western, Southern, 
         and Midwestern states have long ways to go before the majority of the population is fully vaccinated."
-      )
+      ),
+      h2("Major Takeaways"),
+      tags$b(" - Although there is a positive correlation between vaccine supply and administration, we still see that
+             available COVID-19 vaccines are not being fully utilised."),
+      tags$p(),
+      tags$b(" - Geographically, very few states are using their share of vaccines effectively, with Wisconsin and West 
+             Virginia being among the best. On the other hand, Idaho and Alabama are the most ineffective states in 
+             terms of utilizing vaccine supply."),
+      tags$p(),
+      tags$b(" - In terms of region, the Northeast United States has the highest proportion of people fully vaccinated. 
+             On the contrary, the Southern region has the least amount of people fully vaccinated.")
     )
   )
 )
@@ -303,4 +313,3 @@ ui <- navbarPage(
   plot_three_tab,
   summary_takeaways
 )
-
