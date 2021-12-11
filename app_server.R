@@ -277,18 +277,19 @@ server <- function(input, output) {
       geom_col(mapping = aes(x = location, y = people_fully_vaccinated_per_hundred,
                              text = paste("Location:", location, "<br>",
                                           "Fully Vaccinated People Per Hundred:", people_fully_vaccinated_per_hundred, "<br>"))
-               ) + 
-     coord_flip() +
-     labs(
-      title = "State Proportion of People Fully Vaccinated Per Hundred People by US Region", # plot title
-      x = "State", # x-axis label
-      y = "Proportion of People Fully Vaccinated Per Hundred") +
-      scale_x_continuous(limits = input$people)
+      ) + 
+      coord_flip() +
+      labs(
+        title = "State Proportion of People Fully Vaccinated Per Hundred People by US Region", # plot title
+        x = "State", # x-axis label
+        y = "Proportion of People Fully Vaccinated Per Hundred") +
+      scale_y_continuous(limits = input$people)
     
     my_bar_plot <- ggplotly(my_plot_three, tooltip = "text")
     
     return(my_bar_plot)
   })
+  
   
   
 }
