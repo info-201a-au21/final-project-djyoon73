@@ -10,7 +10,7 @@ intro_tab <- tabPanel(
   "Introduction",
   fluidPage(
     h2(style = "color:green", "Introduction"),
-    img(src = "covidvaccine.png", width = "50%", align = "right"),
+    img(src = "https://news.harvard.edu/wp-content/uploads/2021/11/iStock-Vaccine-and-nurse-1200x800.jpg", width = "50%", align = "right"),
     p("Our group is interested in the field/domain of COVID vaccination in America. 
     We are interested in this because it is relevant to how our lives will proceed in 
     these next few months and years, as public health and the end of the pandemic depends 
