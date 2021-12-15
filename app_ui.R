@@ -228,9 +228,12 @@ bar_chart_sidebar <- sidebarPanel(
     choices = region_unique,
     selected = region_unique
   ),
-  sliderInput(
-    inputId = "people",
-    label = "People Fully Vaccinated Per Hundred", min = 0, max = 100, value = c(0, 100)
+  selectInput(
+    inputId = "y_axis",
+    label = "Vaccine Variables per Hundred People",
+    choices = list("Fully Vaccinated People per Hundred" = "people_fully_vaccinated_per_hundred",
+                   "Vaccines Distributed per Hundred" = "distributed_per_hundred"),
+    selected = "people_fully_vaccinated_per_hundred"
   )
 )
 
@@ -241,8 +244,8 @@ plot_main_three <- mainPanel(
 
 #main and side panels combined for page three
 plot_three_tab <- tabPanel(
-  "Fully Vaccinated People per Hundred by US Region",
-  titlePanel("Fully Vaccinated People by US Region"),
+  "Vaccine Data per Hundred by US Region",
+  titlePanel("Vaccine Data per Hundred by US Region"),
   sidebarLayout(
     bar_chart_sidebar,
     plot_main_three

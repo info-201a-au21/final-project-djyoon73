@@ -191,6 +191,8 @@ tests=data.frame(row.names=c("people_fully_vaccinated","share_doses_used","total
 
 teststwo=data.frame(row.names=c("share_doses_used","total_vaccinations","total_distributed")
                  , val=c("Share of Available Doses Used","Total Vaccine Doses Administered", "Total Vaccine Doses Supplied"))
+teststhree=data.frame(row.names=c("people_fully_vaccinated_per_hundred","distributed_per_hundred")
+                    , val=c("Fully Vaccinated People Per Hundred","Vaccines Distributed Per Hundred"))
 
 #Interactive pages setup
 
@@ -274,16 +276,16 @@ server <- function(input, output) {
       filter(region %in% input$region_input) 
     
     my_plot_three <- ggplot(data = chart_region_vaccines) +
-      geom_col(mapping = aes(x = location, y = people_fully_vaccinated_per_hundred,
-                             text = paste("Location:", location, "<br>",
-                                          "Fully Vaccinated People Per Hundred:", people_fully_vaccinated_per_hundred, "<br>"))
+      geom_col(mapping = aes(x = location, y = !!(as.name(input$y_axis)),
+                             text = paste("State:", location, "<br>",
+                                          "Fully Vaccinated People Per Hundred:", people_fully_vaccinated_per_hundred, "<br>",
+                                          "Vaccines Distributed Per Hundred:", distributed_per_hundred, "<br>"))
       ) + 
       coord_flip() +
       labs(
-        title = "State Proportion of People Fully Vaccinated Per Hundred People by US Region", # plot title
+        title = "State Proportion of Vaccines Per Hundred People by US Region", # plot title
         x = "State", # x-axis label
-        y = "Proportion of People Fully Vaccinated Per Hundred") +
-      scale_y_continuous(limits = input$people)
+        y = teststhree[input$y_axis,])
     
     my_bar_plot <- ggplotly(my_plot_three, tooltip = "text")
     
